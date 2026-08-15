@@ -1,10 +1,10 @@
 {
   "name": "Pół miliona złotych",
   "short_name": "500K",
-  "description": "Oficjalna aplikacja mobilna",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f7f7f7",
   "theme_color": "#e30613",
+  "description": "Oficjalna aplikacja mobilna",
   "lang": "pl"
 }
