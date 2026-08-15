@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Pół miliona złotych</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --red: #e30613;
+    --red-dark: #c9000b;
+    --text: #171717;
+    --gray: #707070;
+    --bg: #f7f7f7;
+    --white: #ffffff;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding:
+        calc(30px + env(safe-area-inset-top))
+        20px
+        calc(22px + env(safe-area-inset-bottom));
+
+    flex-direction: column;
+}
+
+.screen.active {
+    display: flex;
+    animation: screenIn .22s ease;
+}
+
+.content {
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+
+    margin: 5px auto 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: var(--red);
+    color: white;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    box-shadow: 0 8px 22px rgba(227, 6, 19, .20);
+}
+
+.small-title {
+    margin: 0 0 12px;
+
+    color: var(--red);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+}
+
+h1 {
+    margin: 0 0 22px;
+
+    font-size: clamp(34px, 9vw, 50px);
+    line-height: 1.04;
+
+    letter-spacing: -1.6px;
+}
+
+h2 {
+    margin: 0;
+
+    font-size: clamp(27px, 7vw, 40px);
+    line-height: 1.12;
+
+    letter-spacing: -.8px;
+}
+
+h2 span {
+    color: var(--red);
+}
+
+.primary-button {
+    width: 100%;
+    max-width: 520px;
+
+    height: 58px;
+
+    margin: 18px auto 0;
+
+    border: 0;
+    border-radius: 15px;
+
+    background: var(--red);
+    color: white;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: .4px;
+
+    box-shadow: 0 7px 18px rgba(227, 6, 19, .18);
+}
+
+.primary-button:active {
+    background: var(--red-dark);
+    transform: scale(.985);
+}
+
+.primary-button:disabled {
+    background: #cfcfcf;
+    box-shadow: none;
+}
+
+.back-button {
+    position: absolute;
+
+    top: calc(15px + env(safe-area-inset-top));
+    left: 18px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 25px;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+
+.city-content {
+    margin-top: 35px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 54px;
+
+    margin: 20px 0 10px;
+
+    padding: 0 16px;
+
+    border: 1px solid #e4e4e4;
+    border-radius: 14px;
+
+    background: white;
+}
+
+.search-icon {
+    margin-right: 9px;
+
+    color: #888;
+
+    font-size: 24px;
+}
+
+.search-box input {
+    width: 100%;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-size: 16px;
+}
+
+.location-button {
+    width: 100%;
+    height: 52px;
+
+    border: 1px solid #f1c6c9;
+    border-radius: 14px;
+
+    background: white;
+
+    color: var(--red);
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.location-button:active {
+    background: #fff2f3;
+}
+
+.location-status {
+    min-height: 18px;
+
+    margin: 8px 3px;
+
+    color: var(--gray);
+
+    font-size: 12px;
+}
+
+.city-list {
+    max-height: 230px;
+
+    overflow-y: auto;
+
+    margin-top: 4px;
+
+    border-radius: 14px;
+}
+
+.city-item {
+    display: block;
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 13px 15px;
+
+    border: 0;
+    border-bottom: 1px solid #eeeeee;
+
+    background: white;
+
+    color: #222;
+
+    text-align: left;
+
+    font-size: 15px;
+}
+
+.city-item:first-child {
+    border-radius: 14px 14px 0 0;
+}
+
+.city-item:last-child {
+    border-radius: 0 0 14px 14px;
+}
+
+.city-item.selected {
+    background: #fff0f1;
+
+    color: var(--red);
+
+    font-weight: 700;
+}
+
+.terms {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 16px;
+
+    color: #333;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+.terms input {
+    width: 20px;
+    height: 20px;
+
+    margin: 0;
+
+    flex-shrink: 0;
+
+    accent-color: var(--red);
+}
+
+.terms button {
+    padding: 0;
+
+    border: 0;
+
+    background: none;
+
+    color: var(--red);
+
+    text-decoration: underline;
+
+    font-weight: 700;
+}
+
+.regulations {
+    margin-top: 35px;
+}
+
+.regulations-card {
+    width: 100%;
+
+    max-height: 65vh;
+
+    overflow-y: auto;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background: white;
+
+    box-shadow: 0 3px 15px rgba(0,0,0,.05);
+}
+
+.regulations-card h3 {
+    margin: 0 0 7px;
+
+    font-size: 16px;
+}
+
+.regulations-card p {
+    margin: 0 0 20px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+.warning {
+    padding: 13px;
+
+    border-radius: 11px;
+
+    background: #fff0f1;
+
+    color: var(--red);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    text-align: center;
+}
+
+.result-content {
+    text-align: center;
+}
+
+.result-icon {
+    margin: auto;
+
+    font-size: 65px;
+}
+
+.result-content h1 {
+    font-size: clamp(31px, 8vw, 46px);
+}
+
+.result-content p {
+    color: var(--gray);
+
+    font-size: 16px;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div id="app">
+
+    <!-- START -->
+
+    <section id="welcome" class="screen active">
+
+        <div class="logo">
+            500K
+        </div>
+
+        <div class="content">
+
+            <p class="small-title">
+                OFICJALNA APLIKACJA MOBILNA
+            </p>
+
+            <h1>
+                Witaj!
+            </h1>
+
+            <h2>
+                Wygraj aż
+                <br>
+                <span>pół miliona złotych!</span>
+            </h2>
+
+        </div>
+
+        <button
+            class="primary-button"
+            onclick="goToCity()"
+        >
+            DALEJ
+        </button>
+
+    </section>
+
+
+    <!-- MIASTO -->
+
+    <section id="city" class="screen">
+
+        <button
+            class="back-button"
+            onclick="showScreen('welcome')"
+        >
+            ←
+        </button>
+
+        <div class="content city-content">
+
+            <p class="small-title">
+                WYBÓR MIASTA
+            </p>
+
+            <h1>
+                Wybierz swoje miasto
+            </h1>
+
+
+            <div class="search-box">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    id="citySearch"
+                    type="search"
+                    placeholder="Wyszukaj miasto"
+                    autocomplete="off"
+                    oninput="filterCities()"
+                >
+
+            </div>
+
+
+            <button
+                id="locationButton"
+                class="location-button"
+                onclick="detectLocation()"
+            >
+                📍 Użyj mojej lokalizacji
+            </button>
+
+
+            <p
+                id="locationStatus"
+                class="location-status"
+            ></p>
+
+
+            <div
+                id="cityList"
+                class="city-list"
+            ></div>
+
+
+            <label class="terms">
+
+                <input
+                    id="terms"
+                    type="checkbox"
+                    onchange="updateButton()"
+                >
+
+                <span>
+                    Akceptuję
+                    <button
+                        type="button"
+                        onclick="openRegulations()"
+                    >
+                        regulamin konkursu
+                    </button>
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <button
+            id="continueButton"
+            class="primary-button"
+            disabled
+            onclick="showResult()"
+        >
+            DALEJ
+        </button>
+
+    </section>
+
+
+    <!-- REGULAMIN -->
+
+    <section id="regulations" class="screen">
+
+        <button
+            class="back-button"
+            onclick="showScreen('city')"
+        >
+            ←
+        </button>
+
+
+        <div class="content regulations">
+
+            <p class="small-title">
+                REGULAMIN
+            </p>
+
+            <h1>
+                Regulamin konkursu
+            </h1>
+
+
+            <div class="regulations-card">
+
+                <h3>§1. Charakter aplikacji</h3>
+
+                <p>
+                    Aplikacja jest memem i parodią.
+                    Nie jest prawdziwym konkursem ani loterią.
+                </p>
+
+
+                <h3>§2. Nagroda</h3>
+
+                <p>
+                    Informacja o możliwości wygrania
+                    <strong>pół miliona złotych</strong>
+                    jest elementem żartu.
+                    W aplikacji nie ma prawdziwej nagrody.
+                </p>
+
+
+                <h3>§3. Wygrana</h3>
+
+                <p>
+                    Za pomocą aplikacji nie można wygrać
+                    pół miliona złotych ani żadnej innej
+                    nagrody pieniężnej.
+                </p>
+
+
+                <h3>§4. Cel</h3>
+
+                <p>
+                    Aplikacja została przygotowana
+                    wyłącznie w celach humorystycznych.
+                </p>
+
+
+                <div class="warning">
+                    TO TYLKO MEM — NIE MA PRAWDZIWEJ NAGRODY.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            onclick="showScreen('city')"
+        >
+            WRÓĆ
+        </button>
+
+    </section>
+
+
+    <!-- WYNIK -->
+
+    <section id="result" class="screen">
+
+        <div class="result-icon">
+            😔
+        </div>
+
+
+        <div class="content result-content">
+
+            <p class="small-title">
+                WYNIK
+            </p>
+
+            <h1>
+                Niestety, tym razem
+                <br>
+                nie wygrałeś.
+            </h1>
+
+            <p>
+                Spróbuj ponownie innym razem.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            onclick="restart()"
+        >
+            SPRÓBUJ PONOWNIE
+        </button>
+
+    </section>
+
+</div>
+
+
+<script>
+
+const cities = [
+
+    { name: "Warszawa", lat: 52.2297, lon: 21.0122 },
+    { name: "Kraków", lat: 50.0647, lon: 19.9450 },
+    { name: "Łódź", lat: 51.7592, lon: 19.4560 },
+    { name: "Wrocław", lat: 51.1079, lon: 17.0385 },
+    { name: "Poznań", lat: 52.4064, lon: 16.9252 },
+    { name: "Gdańsk", lat: 54.3520, lon: 18.6466 },
+    { name: "Szczecin", lat: 53.4285, lon: 14.5528 },
+    { name: "Bydgoszcz", lat: 53.1235, lon: 18.0084 },
+    { name: "Lublin", lat: 51.2465, lon: 22.5684 },
+    { name: "Białystok", lat: 53.1325, lon: 23.1688 },
+    { name: "Katowice", lat: 50.2649, lon: 19.0238 },
+    { name: "Gdynia", lat: 54.5189, lon: 18.5305 },
+    { name: "Częstochowa", lat: 50.8118, lon: 19.1203 },
+    { name: "Radom", lat: 51.4027, lon: 21.1471 },
+    { name: "Toruń", lat: 53.0138, lon: 18.5984 },
+    { name: "Rzeszów", lat: 50.0412, lon: 21.9991 },
+    { name: "Sosnowiec", lat: 50.2863, lon: 19.1041 },
+    { name: "Kielce", lat: 50.8661, lon: 20.6286 },
+    { name: "Gliwice", lat: 50.2945, lon: 18.6714 },
+    { name: "Olsztyn", lat: 53.7784, lon: 20.4801 },
+    { name: "Zabrze", lat: 50.3249, lon: 18.7857 },
+    { name: "Bielsko-Biała", lat: 49.8224, lon: 19.0444 },
+    { name: "Bytom", lat: 50.3484, lon: 18.9157 },
+    { name: "Zielona Góra", lat: 51.9356, lon: 15.5062 },
+    { name: "Rybnik", lat: 50.1022, lon: 18.5463 },
+    { name: "Ruda Śląska", lat: 50.2558, lon: 18.8556 },
+    { name: "Opole", lat: 50.6751, lon: 17.9213 },
+    { name: "Tychy", lat: 50.1372, lon: 18.9664 },
+    { name: "Gorzów Wielkopolski", lat: 52.7325, lon: 15.2369 },
+    { name: "Elbląg", lat: 54.1561, lon: 19.4045 }
+
+];
+
+
+let selectedCity = null;
+
+
+/* EKRANY */
+
+function showScreen(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+            screen.classList.remove("active");
+        });
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+}
+
+
+/* START */
+
+function goToCity() {
+
+    showScreen("city");
+
+    renderCities(cities);
+
+}
+
+
+/* MIASTA */
+
+function renderCities(list) {
+
+    const container =
+        document.getElementById("cityList");
+
+    container.innerHTML = "";
+
+    list.forEach(city => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "city-item";
+
+        if (city.name === selectedCity) {
+            button.classList.add("selected");
+        }
+
+        button.textContent = city.name;
+
+        button.onclick = () => {
+            selectCity(city.name);
+        };
+
+        container.appendChild(button);
+
+    });
+
+}
+
+
+function selectCity(city) {
+
+    selectedCity = city;
+
+    renderCities(getFilteredCities());
+
+    updateButton();
+
+}
+
+
+function getFilteredCities() {
+
+    const search =
+        document
+            .getElementById("citySearch")
+            .value
+            .toLowerCase()
+            .trim();
+
+    if (!search) {
+        return cities;
+    }
+
+    return cities.filter(city =>
+        city.name.toLowerCase().includes(search)
+    );
+
+}
+
+
+function filterCities() {
+
+    renderCities(getFilteredCities());
+
+}
+
+
+/* REGULAMIN */
+
+function openRegulations() {
+
+    showScreen("regulations");
+
+}
+
+
+/* PRZYCISK DALEJ */
+
+function updateButton() {
+
+    const checkbox =
+        document.getElementById("terms");
+
+    const button =
+        document.getElementById("continueButton");
+
+    button.disabled =
+        !(selectedCity && checkbox.checked);
+
+}
+
+
+/* WYNIK */
+
+function showResult() {
+
+    if (!selectedCity) {
+        return;
+    }
+
+    showScreen("result");
+
+}
+
+
+/* RESTART */
+
+function restart() {
+
+    selectedCity = null;
+
+    document.getElementById("terms").checked = false;
+
+    document.getElementById("citySearch").value = "";
+
+    document.getElementById("locationStatus").textContent = "";
+
+    document.getElementById("locationButton").textContent =
+        "📍 Użyj mojej lokalizacji";
+
+    updateButton();
+
+    renderCities(cities);
+
+    showScreen("city");
+
+}
+
+
+/* ========================================= */
+/* PRAWDZIWA LOKALIZACJA */
+/* ========================================= */
+
+function detectLocation() {
+
+    const status =
+        document.getElementById("locationStatus");
+
+    const button =
+        document.getElementById("locationButton");
+
+
+    if (!navigator.geolocation) {
+
+        status.textContent =
+            "Ta przeglądarka nie obsługuje lokalizacji.";
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "⌛ Wykrywanie lokalizacji...";
+
+    status.textContent =
+        "Zezwól na dostęp do lokalizacji.";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        position => {
+
+            const latitude =
+                position.coords.latitude;
+
+            const longitude =
+                position.coords.longitude;
+
+
+            const nearest =
+                findNearestCity(latitude, longitude);
+
+
+            selectedCity = nearest.name;
+
+
+            document.getElementById("citySearch").value =
+                nearest.name;
+
+
+            renderCities([nearest]);
+
+
+            status.textContent =
+                "Wybrano: " + nearest.name;
+
+
+            button.textContent =
+                "✓ Lokalizacja użyta";
+
+
+            button.disabled = false;
+
+
+            updateButton();
+
+        },
+
+
+        error => {
+
+            button.disabled = false;
+
+            button.textContent =
+                "📍 Użyj mojej lokalizacji";
+
+
+            if (error.code === 1) {
+
+                status.textContent =
+                    "Nie udzielono dostępu do lokalizacji.";
+
+            } else if (error.code === 2) {
+
+                status.textContent =
+                    "Nie udało się ustalić lokalizacji.";
+
+            } else if (error.code === 3) {
+
+                status.textContent =
+                    "Przekroczono czas oczekiwania.";
+
+            } else {
+
+                status.textContent =
+                    "Nie udało się pobrać lokalizacji.";
+
+            }
+
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+
+    );
+
+}
+
+
+/* NAJBLIŻSZE MIASTO */
+
+function findNearestCity(latitude, longitude) {
+
+    let nearest = cities[0];
+
+    let shortestDistance =
+        calculateDistance(
+            latitude,
+            longitude,
+            nearest.lat,
+            nearest.lon
+        );
+
+
+    for (let i = 1; i < cities.length; i++) {
+
+        const city = cities[i];
+
+        const distance =
+            calculateDistance(
+                latitude,
+                longitude,
+                city.lat,
+                city.lon
+            );
+
+
+        if (distance < shortestDistance) {
+
+            shortestDistance = distance;
+
+            nearest = city;
+
+        }
+
+    }
+
+
+    return nearest;
+
+}
+
+
+/* ODLEGŁOŚĆ — HAVERSINE */
+
+function calculateDistance(
+    lat1,
+    lon1,
+    lat2,
+    lon2
+) {
+
+    const earthRadius = 6371;
+
+    const dLat =
+        degreesToRadians(lat2 - lat1);
+
+    const dLon =
+        degreesToRadians(lon2 - lon1);
+
+
+    const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(degreesToRadians(lat1)) *
+        Math.cos(degreesToRadians(lat2)) *
+        Math.sin(dLon / 2) ** 2;
+
+
+    const c =
+        2 *
+        Math.atan2(
+            Math.sqrt(a),
+            Math.sqrt(1 - a)
+        );
+
+
+    return earthRadius * c;
+
+}
+
+
+function degreesToRadians(degrees) {
+
+    return degrees * Math.PI / 180;
+
+}
+
+
+/* STARTOWA LISTA */
+
+renderCities(cities);
+
+</script>
+
+</body>
+</html>
