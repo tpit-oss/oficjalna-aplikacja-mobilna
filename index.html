@@ -2,16 +2,14 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Pół miliona złotych</title>
 
-<style>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#e30613">
 
+<style>
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -23,17 +21,14 @@
     --text: #171717;
     --gray: #707070;
     --bg: #f7f7f7;
-    --white: #ffffff;
 }
 
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
     background: var(--bg);
     color: var(--text);
-
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -59,69 +54,47 @@ button {
     cursor: pointer;
 }
 
-
-/* =========================
-   EKRANY
-========================= */
-
 .screen {
     display: none;
-
     min-height: 100vh;
     min-height: 100dvh;
-
     padding:
         calc(30px + env(safe-area-inset-top))
         20px
         calc(22px + env(safe-area-inset-bottom));
-
     flex-direction: column;
 }
 
 .screen.active {
     display: flex;
-
     animation: screenIn .22s ease;
 }
 
 .content {
     width: 100%;
     max-width: 520px;
-
     margin: auto;
 }
 
-
-/* =========================
-   TEKST
-========================= */
-
 .small-title {
     margin: 0 0 12px;
-
     color: var(--red);
-
     font-size: 11px;
     font-weight: 800;
-
     letter-spacing: 1.2px;
 }
 
 h1 {
     margin: 0 0 22px;
-
     font-size: clamp(34px, 9vw, 50px);
     line-height: 1.04;
-
     letter-spacing: -1.6px;
 }
 
 h2 {
     margin: 0;
-
     font-size: clamp(27px, 7vw, 40px);
     line-height: 1.12;
-
     letter-spacing: -.8px;
 }
 
@@ -129,59 +102,34 @@ h2 span {
     color: var(--red);
 }
 
-
-/* =========================
-   LOGO
-========================= */
-
 .logo {
     width: 70px;
     height: 70px;
-
     margin: 5px auto 35px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 20px;
-
     background: var(--red);
     color: white;
-
     font-size: 18px;
     font-weight: 900;
-
-    box-shadow:
-        0 8px 22px rgba(227, 6, 19, .20);
+    box-shadow: 0 8px 22px rgba(227, 6, 19, .20);
 }
-
-
-/* =========================
-   PRZYCISKI
-========================= */
 
 .primary-button {
     width: 100%;
     max-width: 520px;
-
     height: 58px;
-
     margin: 18px auto 0;
-
     border: 0;
     border-radius: 15px;
-
     background: var(--red);
     color: white;
-
     font-size: 16px;
     font-weight: 800;
-
     letter-spacing: .4px;
-
-    box-shadow:
-        0 7px 18px rgba(227, 6, 19, .18);
+    box-shadow: 0 7px 18px rgba(227, 6, 19, .18);
 }
 
 .primary-button:active {
@@ -195,37 +143,97 @@ h2 span {
     cursor: not-allowed;
 }
 
-
-/* =========================
-   POWRÓT
-========================= */
-
 .back-button {
     position: absolute;
-
     top: calc(15px + env(safe-area-inset-top));
     left: 18px;
-
     width: 42px;
     height: 42px;
-
     border: 0;
     border-radius: 50%;
-
     background: white;
-
     color: #222;
-
     font-size: 25px;
-
-    box-shadow:
-        0 2px 12px rgba(0,0,0,.08);
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
 }
 
+/* INSTALACJA */
 
-/* =========================
-   MIASTA
-========================= */
+.install-content {
+    text-align: center;
+}
+
+.install-icon {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 23px;
+    background: var(--red);
+    color: white;
+    font-size: 22px;
+    font-weight: 900;
+    box-shadow: 0 9px 25px rgba(227, 6, 19, .22);
+}
+
+.install-subtitle {
+    margin: -5px 0 25px;
+    color: var(--gray);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.install-steps {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.install-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin-bottom: 17px;
+    padding: 15px;
+    border-radius: 15px;
+    background: white;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff0f1;
+    color: var(--red);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.install-step strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+}
+
+.install-step span {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.browser-note {
+    margin-top: 16px;
+    color: var(--gray);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* MIASTA */
 
 .city-content {
     margin-top: 35px;
@@ -234,158 +242,100 @@ h2 span {
 .search-box {
     display: flex;
     align-items: center;
-
     width: 100%;
     height: 54px;
-
     margin: 20px 0 10px;
     padding: 0 16px;
-
     border: 1px solid #e4e4e4;
     border-radius: 14px;
-
     background: white;
 }
 
 .search-icon {
     margin-right: 9px;
-
     color: #888;
-
     font-size: 24px;
 }
 
 .search-box input {
     width: 100%;
-
     border: 0;
     outline: 0;
-
     background: transparent;
-
     color: var(--text);
-
     font-size: 16px;
 }
 
 .location-button {
     width: 100%;
     height: 52px;
-
     border: 1px solid #f1c6c9;
     border-radius: 14px;
-
     background: white;
-
     color: var(--red);
-
     font-size: 15px;
     font-weight: 700;
 }
 
-.location-button:active {
-    background: #fff2f3;
-}
-
 .location-status {
     min-height: 18px;
-
     margin: 8px 3px;
-
     color: var(--gray);
-
     font-size: 12px;
 }
 
 .city-list {
     max-height: 250px;
-
     overflow-y: auto;
-
     margin-top: 4px;
-
     border-radius: 14px;
 }
 
 .city-item {
     display: block;
-
     width: 100%;
     min-height: 48px;
-
     padding: 13px 15px;
-
     border: 0;
     border-bottom: 1px solid #eeeeee;
-
     background: white;
-
     color: #222;
-
     text-align: left;
-
     font-size: 15px;
-}
-
-.city-item:first-child {
-    border-radius: 14px 14px 0 0;
-}
-
-.city-item:last-child {
-    border-radius: 0 0 14px 14px;
 }
 
 .city-item.selected {
     background: #fff0f1;
-
     color: var(--red);
-
     font-weight: 700;
 }
 
-
-/* =========================
-   REGULAMIN
-========================= */
+/* REGULAMIN */
 
 .terms {
     display: flex;
-
     align-items: flex-start;
-
     gap: 10px;
-
     margin-top: 16px;
-
     color: #333;
-
     font-size: 13px;
-
     line-height: 1.4;
 }
 
 .terms input {
     width: 20px;
     height: 20px;
-
     margin: 0;
-
     flex-shrink: 0;
-
     accent-color: var(--red);
 }
 
 .terms button {
     padding: 0;
-
     border: 0;
-
     background: none;
-
     color: var(--red);
-
     text-decoration: underline;
-
     font-weight: 700;
 }
 
@@ -395,57 +345,37 @@ h2 span {
 
 .regulations-card {
     width: 100%;
-
     max-height: 65vh;
-
     overflow-y: auto;
-
     padding: 20px;
-
     border-radius: 18px;
-
     background: white;
-
-    box-shadow:
-        0 3px 15px rgba(0,0,0,.05);
+    box-shadow: 0 3px 15px rgba(0,0,0,.05);
 }
 
 .regulations-card h3 {
     margin: 0 0 7px;
-
     font-size: 16px;
 }
 
 .regulations-card p {
     margin: 0 0 20px;
-
     color: #555;
-
     font-size: 14px;
-
     line-height: 1.55;
 }
 
 .warning {
     padding: 13px;
-
     border-radius: 11px;
-
     background: #fff0f1;
-
     color: var(--red);
-
     font-size: 12px;
-
     font-weight: 800;
-
     text-align: center;
 }
 
-
-/* =========================
-   ŹRÓDŁO
-========================= */
+/* ŹRÓDŁO */
 
 .source-content {
     margin-top: 35px;
@@ -453,141 +383,192 @@ h2 span {
 
 .source-list {
     display: flex;
-
     flex-direction: column;
-
     gap: 10px;
-
     margin-top: 20px;
 }
 
 .source-button {
     width: 100%;
     min-height: 55px;
-
     padding: 0 17px;
-
     border: 1px solid #e5e5e5;
     border-radius: 15px;
-
     background: white;
-
     color: #222;
-
     text-align: left;
-
     font-size: 15px;
     font-weight: 600;
-
-    transition:
-        background .15s ease,
-        border .15s ease;
 }
 
 .source-button.selected {
     border-color: var(--red);
-
     background: #fff0f1;
-
     color: var(--red);
 }
 
+/* WYNIK */
 
-/* =========================
-   WYNIK
-========================= */
-
-.result-content {
+.result-content,
+.success-content {
     text-align: center;
 }
 
 .result-icon {
     margin: auto;
-
     font-size: 65px;
 }
 
-.result-content h1 {
+.result-content h1,
+.success-content h1 {
     font-size: clamp(31px, 8vw, 46px);
 }
-
-.result-content p {
-    color: var(--gray);
-
-    font-size: 16px;
-}
-
-
-/* =========================
-   LOS WYSŁANY
-========================= */
 
 .success-icon {
     width: 78px;
     height: 78px;
-
     margin: 0 auto 25px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
     background: #e9f8ec;
-
     color: #1b8f35;
-
     font-size: 38px;
 }
 
-.success-content {
-    text-align: center;
-}
-
-.success-content h1 {
-    font-size: clamp(32px, 8vw, 46px);
-}
-
+.result-content p,
 .success-content p {
     color: var(--gray);
-
     font-size: 16px;
 }
 
-
-/* =========================
-   ANIMACJA
-========================= */
-
 @keyframes screenIn {
-
     from {
         opacity: 0;
         transform: translateY(6px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
 </style>
 </head>
-
 
 <body>
 
 <div id="app">
 
 
-<!-- =================================
-     EKRAN 1
-================================= -->
+<!-- ================================
+     INSTALACJA
+================================ -->
 
-<section id="welcome" class="screen active">
+<section id="install" class="screen">
+
+    <div class="content install-content">
+
+        <div class="install-icon">
+            500K
+        </div>
+
+        <p class="small-title">
+            APLIKACJA MOBILNA
+        </p>
+
+        <h1>
+            Dodaj aplikację
+            <br>
+            do ekranu głównego
+        </h1>
+
+        <p class="install-subtitle" id="installSubtitle">
+            Dzięki temu będziesz mógł uruchamiać ją jak zwykłą aplikację.
+        </p>
+
+
+        <div class="install-steps" id="iosSteps">
+
+            <div class="install-step">
+                <div class="step-number">1</div>
+                <div>
+                    <strong>Naciśnij Udostępnij</strong>
+                    <span>Znajdziesz ten przycisk na dole ekranu Safari.</span>
+                </div>
+            </div>
+
+            <div class="install-step">
+                <div class="step-number">2</div>
+                <div>
+                    <strong>Wybierz „Dodaj do ekranu początkowego”</strong>
+                    <span>Przewiń menu udostępniania, jeśli tej opcji nie widać.</span>
+                </div>
+            </div>
+
+            <div class="install-step">
+                <div class="step-number">3</div>
+                <div>
+                    <strong>Naciśnij „Dodaj”</strong>
+                    <span>Ikona aplikacji pojawi się na ekranie głównym.</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="install-steps" id="androidSteps" style="display:none">
+
+            <div class="install-step">
+                <div class="step-number">1</div>
+                <div>
+                    <strong>Otwórz menu przeglądarki</strong>
+                    <span>Naciśnij trzy kropki w prawym górnym rogu.</span>
+                </div>
+            </div>
+
+            <div class="install-step">
+                <div class="step-number">2</div>
+                <div>
+                    <strong>Wybierz „Zainstaluj aplikację”</strong>
+                    <span>Jeśli tej opcji nie ma, wybierz „Dodaj do ekranu głównego”.</span>
+                </div>
+            </div>
+
+            <div class="install-step">
+                <div class="step-number">3</div>
+                <div>
+                    <strong>Potwierdź instalację</strong>
+                    <span>Aplikacja pojawi się na ekranie głównym.</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <p class="browser-note">
+            Możesz też korzystać z aplikacji bez dodawania jej do ekranu głównego.
+        </p>
+
+    </div>
+
+
+    <button
+        class="primary-button"
+        onclick="continueFromInstall()"
+    >
+        PRZEJDŹ DALEJ
+    </button>
+
+</section>
+
+
+<!-- ================================
+     WITAJ
+================================ -->
+
+<section id="welcome" class="screen">
 
     <div class="logo">
         500K
@@ -621,9 +602,9 @@ h2 span {
 </section>
 
 
-<!-- =================================
-     EKRAN 2 — MIASTO
-================================= -->
+<!-- ================================
+     MIASTO
+================================ -->
 
 <section id="city" class="screen">
 
@@ -644,12 +625,9 @@ h2 span {
             Wybierz swoje miasto
         </h1>
 
-
         <div class="search-box">
 
-            <span class="search-icon">
-                ⌕
-            </span>
+            <span class="search-icon">⌕</span>
 
             <input
                 id="citySearch"
@@ -661,7 +639,6 @@ h2 span {
 
         </div>
 
-
         <button
             id="locationButton"
             class="location-button"
@@ -670,18 +647,15 @@ h2 span {
             📍 Użyj mojej lokalizacji
         </button>
 
-
         <p
             id="locationStatus"
             class="location-status"
         ></p>
 
-
         <div
             id="cityList"
             class="city-list"
         ></div>
-
 
         <label class="terms">
 
@@ -700,13 +674,11 @@ h2 span {
                 >
                     regulamin konkursu
                 </button>
-
             </span>
 
         </label>
 
     </div>
-
 
     <button
         id="cityContinue"
@@ -720,9 +692,9 @@ h2 span {
 </section>
 
 
-<!-- =================================
-     EKRAN 3 — ŹRÓDŁO
-================================= -->
+<!-- ================================
+     ŹRÓDŁO
+================================ -->
 
 <section id="source" class="screen">
 
@@ -733,7 +705,6 @@ h2 span {
         ←
     </button>
 
-
     <div class="content source-content">
 
         <p class="small-title">
@@ -743,7 +714,6 @@ h2 span {
         <h1>
             Skąd wiesz o aplikacji?
         </h1>
-
 
         <div class="source-list">
 
@@ -786,7 +756,6 @@ h2 span {
 
     </div>
 
-
     <button
         id="sourceContinue"
         class="primary-button"
@@ -799,9 +768,9 @@ h2 span {
 </section>
 
 
-<!-- =================================
-     EKRAN 4 — REGULAMIN
-================================= -->
+<!-- ================================
+     REGULAMIN
+================================ -->
 
 <section id="regulations" class="screen">
 
@@ -811,7 +780,6 @@ h2 span {
     >
         ←
     </button>
-
 
     <div class="content regulations">
 
@@ -823,22 +791,16 @@ h2 span {
             Regulamin konkursu
         </h1>
 
-
         <div class="regulations-card">
 
-            <h3>
-                §1. Charakter aplikacji
-            </h3>
+            <h3>§1. Charakter aplikacji</h3>
 
             <p>
                 Aplikacja jest memem i parodią.
                 Nie jest prawdziwym konkursem ani loterią.
             </p>
 
-
-            <h3>
-                §2. Nagroda
-            </h3>
+            <h3>§2. Nagroda</h3>
 
             <p>
                 Informacja o możliwości wygrania
@@ -847,10 +809,7 @@ h2 span {
                 W aplikacji nie ma prawdziwej nagrody.
             </p>
 
-
-            <h3>
-                §3. Wygrana
-            </h3>
+            <h3>§3. Wygrana</h3>
 
             <p>
                 Za pomocą aplikacji nie można wygrać
@@ -858,16 +817,12 @@ h2 span {
                 nagrody pieniężnej.
             </p>
 
-
-            <h3>
-                §4. Cel
-            </h3>
+            <h3>§4. Cel</h3>
 
             <p>
                 Aplikacja została przygotowana
                 wyłącznie w celach humorystycznych.
             </p>
-
 
             <div class="warning">
                 TO TYLKO MEM — NIE MA PRAWDZIWEJ NAGRODY.
@@ -876,7 +831,6 @@ h2 span {
         </div>
 
     </div>
-
 
     <button
         class="primary-button"
@@ -888,16 +842,15 @@ h2 span {
 </section>
 
 
-<!-- =================================
-     EKRAN 5 — PRZEGRANA
-================================= -->
+<!-- ================================
+     PRZEGRANA
+================================ -->
 
 <section id="result" class="screen">
 
     <div class="result-icon">
         😔
     </div>
-
 
     <div class="content result-content">
 
@@ -916,16 +869,15 @@ h2 span {
 </section>
 
 
-<!-- =================================
-     EKRAN 6 — LOS WYSŁANY
-================================= -->
+<!-- ================================
+     SUKCES
+================================ -->
 
 <section id="success" class="screen">
 
     <div class="success-icon">
         ✓
     </div>
-
 
     <div class="content success-content">
 
@@ -945,16 +897,121 @@ h2 span {
 
 </section>
 
-
 </div>
 
 
 <script>
 
+/* ================================
+   PWA
+================================ */
 
-/* =================================
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./sw.js")
+            .catch(() => {});
+
+    });
+
+}
+
+
+/* ================================
+   WYKRYWANIE URZĄDZENIA
+================================ */
+
+const isIOS =
+    /iPhone|iPad|iPod/i.test(
+        navigator.userAgent
+    );
+
+const isAndroid =
+    /Android/i.test(
+        navigator.userAgent
+    );
+
+const isStandalone =
+    window.matchMedia(
+        "(display-mode: standalone)"
+    ).matches ||
+    window.navigator.standalone === true;
+
+
+/*
+   Jeżeli aplikacja jest już uruchomiona
+   z ikony ekranu głównego,
+   nie pokazujemy instrukcji instalacji.
+*/
+
+if (isStandalone) {
+
+    document
+        .getElementById("welcome")
+        .classList.add("active");
+
+} else {
+
+    if (isAndroid) {
+
+        document
+            .getElementById("iosSteps")
+            .style.display = "none";
+
+        document
+            .getElementById("androidSteps")
+            .style.display = "block";
+
+        document
+            .getElementById("installSubtitle")
+            .textContent =
+            "Dodaj aplikację do ekranu głównego, aby uruchamiać ją jak zwykłą aplikację.";
+
+    }
+
+    showScreen("install");
+
+}
+
+
+/* ================================
+   INSTALACJA
+================================ */
+
+function continueFromInstall() {
+
+    showScreen("welcome");
+
+}
+
+
+/* ================================
+   EKRANY
+================================ */
+
+function showScreen(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+}
+
+
+/* ================================
    MIASTA
-================================= */
+================================ */
 
 const cities = [
 
@@ -1003,47 +1060,19 @@ const cities = [
     { name: "Nowy Sącz", lat: 49.6175, lon: 20.7153 },
     { name: "Siedlce", lat: 52.1677, lon: 22.2901 },
     { name: "Piła", lat: 53.1515, lon: 16.7382 },
-    { name: "Ostrów Wielkopolski", lat: 51.6550, lon: 17.8069 },
-    { name: "Lubin", lat: 51.4000, lon: 16.2000 },
-    { name: "Inowrocław", lat: 52.7989, lon: 18.2633 },
-    { name: "Suwałki", lat: 54.1110, lon: 22.9300 },
     { name: "Gniezno", lat: 52.5348, lon: 17.5826 },
-    { name: "Oświęcim", lat: 50.0344, lon: 19.2097 },
     { name: "Zamość", lat: 50.7231, lon: 23.2519 }
 
 ];
 
 
 let selectedCity = null;
-
 let selectedSource = null;
 
 
-/* =================================
-   EKRANY
-================================= */
-
-function showScreen(id) {
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen => {
-
-            screen.classList.remove("active");
-
-        });
-
-
-    document
-        .getElementById(id)
-        .classList.add("active");
-
-}
-
-
-/* =================================
-   START
-================================= */
+/* ================================
+   MIASTO
+================================ */
 
 function goToCity() {
 
@@ -1054,28 +1083,19 @@ function goToCity() {
 }
 
 
-/* =================================
-   MIASTA
-================================= */
-
 function renderCities(list) {
 
     const container =
         document.getElementById("cityList");
 
-
     container.innerHTML = "";
-
 
     list.forEach(city => {
 
         const button =
             document.createElement("button");
 
-
-        button.className =
-            "city-item";
-
+        button.className = "city-item";
 
         if (city.name === selectedCity) {
 
@@ -1083,17 +1103,14 @@ function renderCities(list) {
 
         }
 
-
         button.textContent =
             city.name;
-
 
         button.onclick = () => {
 
             selectCity(city.name);
 
         };
-
 
         container.appendChild(button);
 
@@ -1106,7 +1123,9 @@ function selectCity(city) {
 
     selectedCity = city;
 
-    renderCities(getFilteredCities());
+    renderCities(
+        getFilteredCities()
+    );
 
     updateCityButton();
 
@@ -1122,20 +1141,14 @@ function getFilteredCities() {
             .toLowerCase()
             .trim();
 
-
     if (!search) {
-
         return cities;
-
     }
 
-
     return cities.filter(city =>
-
         city.name
             .toLowerCase()
             .includes(search)
-
     );
 
 }
@@ -1150,9 +1163,9 @@ function filterCities() {
 }
 
 
-/* =================================
+/* ================================
    REGULAMIN
-================================= */
+================================ */
 
 function openRegulations() {
 
@@ -1161,19 +1174,17 @@ function openRegulations() {
 }
 
 
-/* =================================
+/* ================================
    PRZYCISK MIASTA
-================================= */
+================================ */
 
 function updateCityButton() {
 
     const checkbox =
         document.getElementById("terms");
 
-
     const button =
         document.getElementById("cityContinue");
-
 
     button.disabled =
         !(selectedCity && checkbox.checked);
@@ -1181,9 +1192,9 @@ function updateCityButton() {
 }
 
 
-/* =================================
-   PRZEJŚCIE DO ŹRÓDŁA
-================================= */
+/* ================================
+   ŹRÓDŁO
+================================ */
 
 function goToSource() {
 
@@ -1191,79 +1202,76 @@ function goToSource() {
         return;
     }
 
-
-    if (!document.getElementById("terms").checked) {
+    if (
+        !document
+            .getElementById("terms")
+            .checked
+    ) {
         return;
     }
 
-
     selectedSource = null;
-
 
     document
         .querySelectorAll(".source-button")
         .forEach(button => {
 
-            button.classList.remove("selected");
+            button.classList.remove(
+                "selected"
+            );
 
         });
 
-
-    document.getElementById("sourceContinue").disabled = true;
-
+    document
+        .getElementById("sourceContinue")
+        .disabled = true;
 
     showScreen("source");
 
 }
 
 
-/* =================================
-   ŹRÓDŁO
-================================= */
+function selectSource(
+    source,
+    button
+) {
 
-function selectSource(source, button) {
-
-    selectedSource = source;
-
+    selectedSource =
+        source;
 
     document
         .querySelectorAll(".source-button")
         .forEach(item => {
 
-            item.classList.remove("selected");
+            item.classList.remove(
+                "selected"
+            );
 
         });
 
+    button.classList.add(
+        "selected"
+    );
 
-    button.classList.add("selected");
-
-
-    document.getElementById("sourceContinue").disabled =
-        false;
+    document
+        .getElementById("sourceContinue")
+        .disabled = false;
 
 }
 
 
-/* =================================
-   KONIEC
-================================= */
+/* ================================
+   WYNIK
+================================ */
 
 function finish() {
 
-    if (!selectedCity || !selectedSource) {
+    if (
+        !selectedCity ||
+        !selectedSource
+    ) {
         return;
     }
-
-
-    /*
-       Fikcyjna logika mema:
-
-       Warszawa + Facebook
-       = "Los wysłany"
-
-       Wszystkie inne kombinacje
-       = przegrana
-    */
 
 
     if (
@@ -1282,18 +1290,23 @@ function finish() {
 }
 
 
-/* =================================
+/* ================================
    LOKALIZACJA
-================================= */
+================================ */
 
 function detectLocation() {
 
     const status =
-        document.getElementById("locationStatus");
-
+        document
+            .getElementById(
+                "locationStatus"
+            );
 
     const button =
-        document.getElementById("locationButton");
+        document
+            .getElementById(
+                "locationButton"
+            );
 
 
     if (!navigator.geolocation) {
@@ -1311,7 +1324,6 @@ function detectLocation() {
     button.textContent =
         "⌛ Wykrywanie lokalizacji...";
 
-
     status.textContent =
         "Zezwól na dostęp do lokalizacji.";
 
@@ -1322,7 +1334,6 @@ function detectLocation() {
 
             const latitude =
                 position.coords.latitude;
-
 
             const longitude =
                 position.coords.longitude;
@@ -1339,15 +1350,22 @@ function detectLocation() {
                 nearest.name;
 
 
-            document.getElementById("citySearch").value =
+            document
+                .getElementById(
+                    "citySearch"
+                )
+                .value =
                 nearest.name;
 
 
-            renderCities([nearest]);
+            renderCities([
+                nearest
+            ]);
 
 
             status.textContent =
-                "Wybrano: " + nearest.name;
+                "Wybrano: " +
+                nearest.name;
 
 
             button.textContent =
@@ -1355,7 +1373,6 @@ function detectLocation() {
 
 
             button.disabled = false;
-
 
             updateCityButton();
 
@@ -1366,7 +1383,6 @@ function detectLocation() {
 
             button.disabled = false;
 
-
             button.textContent =
                 "📍 Użyj mojej lokalizacji";
 
@@ -1376,23 +1392,17 @@ function detectLocation() {
                 status.textContent =
                     "Nie udzielono dostępu do lokalizacji.";
 
-            }
-
-            else if (error.code === 2) {
+            } else if (error.code === 2) {
 
                 status.textContent =
                     "Nie udało się ustalić lokalizacji.";
 
-            }
-
-            else if (error.code === 3) {
+            } else if (error.code === 3) {
 
                 status.textContent =
                     "Przekroczono czas oczekiwania.";
 
-            }
-
-            else {
+            } else {
 
                 status.textContent =
                     "Nie udało się pobrać lokalizacji.";
@@ -1412,9 +1422,9 @@ function detectLocation() {
 }
 
 
-/* =================================
+/* ================================
    NAJBLIŻSZE MIASTO
-================================= */
+================================ */
 
 function findNearestCity(
     latitude,
@@ -1423,7 +1433,6 @@ function findNearestCity(
 
     let nearest =
         cities[0];
-
 
     let shortestDistance =
         calculateDistance(
@@ -1443,7 +1452,6 @@ function findNearestCity(
         const city =
             cities[i];
 
-
         const distance =
             calculateDistance(
                 latitude,
@@ -1461,7 +1469,6 @@ function findNearestCity(
             shortestDistance =
                 distance;
 
-
             nearest =
                 city;
 
@@ -1475,10 +1482,6 @@ function findNearestCity(
 }
 
 
-/* =================================
-   ODLEGŁOŚĆ
-================================= */
-
 function calculateDistance(
     lat1,
     lon1,
@@ -1486,15 +1489,12 @@ function calculateDistance(
     lon2
 ) {
 
-    const earthRadius =
-        6371;
-
+    const earthRadius = 6371;
 
     const dLat =
         degreesToRadians(
             lat2 - lat1
         );
-
 
     const dLon =
         degreesToRadians(
@@ -1504,21 +1504,17 @@ function calculateDistance(
 
     const a =
         Math.sin(dLat / 2) ** 2 +
-
         Math.cos(
             degreesToRadians(lat1)
         ) *
-
         Math.cos(
             degreesToRadians(lat2)
         ) *
-
         Math.sin(dLon / 2) ** 2;
 
 
     const c =
         2 *
-
         Math.atan2(
             Math.sqrt(a),
             Math.sqrt(1 - a)
@@ -1530,20 +1526,15 @@ function calculateDistance(
 }
 
 
-function degreesToRadians(degrees) {
+function degreesToRadians(
+    degrees
+) {
 
     return degrees *
         Math.PI /
         180;
 
 }
-
-
-/* =================================
-   STARTOWA LISTA
-================================= */
-
-renderCities(cities);
 
 </script>
 
