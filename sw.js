@@ -1,87 +1,53 @@
-const CACHE_NAME = "pol-miliona-v1";
+const CACHE = "500k-v1";
 
 const FILES = [
     "./",
     "./index.html",
-    "./manifest.webmanifest"
+    "./manifest.webmanifest",
+    "./sw.js"
 ];
 
 self.addEventListener("install", event => {
-
     event.waitUntil(
-
-        caches
-            .open(CACHE_NAME)
-            .then(cache => cache.addAll(FILES))
-
+        caches.open(CACHE).then(cache => cache.addAll(FILES))
     );
 
     self.skipWaiting();
-
 });
 
-
 self.addEventListener("activate", event => {
-
     event.waitUntil(
-
-        caches
-            .keys()
-            .then(keys =>
-
-                Promise.all(
-
-                    keys
-                        .filter(key =>
-                            key !== CACHE_NAME
-                        )
-                        .map(key =>
-                            caches.delete(key)
-                        )
-
-                )
-
+        caches.keys().then(keys =>
+            Promise.all(
+                keys
+                    .filter(key => key !== CACHE)
+                    .map(key => caches.delete(key))
             )
-
+        )
     );
 
     self.clients.claim();
-
 });
-
 
 self.addEventListener("fetch", event => {
 
     event.respondWith(
-
         fetch(event.request)
             .then(response => {
 
-                const copy =
-                    response.clone();
+                const copy = response.clone();
 
-                caches
-                    .open(CACHE_NAME)
+                caches.open(CACHE)
                     .then(cache => {
-
-                        cache.put(
-                            event.request,
-                            copy
-                        );
-
+                        cache.put(event.request, copy);
                     });
 
                 return response;
 
             })
             .catch(() =>
-
-                caches.match(
-                    event.request
-                )
-
+                caches.match(event.request)
             )
-
     );
 
 });
