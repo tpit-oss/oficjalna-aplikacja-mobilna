@@ -1,1 +1,0 @@
-# oficjalna-aplikacja-mobilna
