@@ -2,11 +2,11 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<title>Pół miliona złotych</title>
+<title>500K</title>
 
-<link rel="manifest" href="manifest.webmanifest">
+<link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#e30613">
 
 <style>
@@ -15,59 +15,31 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-:root {
-    --red: #e30613;
-    --red-dark: #c9000b;
-    --text: #171717;
-    --gray: #707070;
-    --bg: #f7f7f7;
-}
-
 html, body {
     margin: 0;
-    padding: 0;
     min-height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+    background: #f7f7f7;
+    color: #171717;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 body {
     min-height: 100vh;
 }
 
-button,
-input {
-    font: inherit;
-}
-
-button {
-    -webkit-appearance: none;
-    appearance: none;
-    cursor: pointer;
-}
-
 .screen {
     display: none;
     min-height: 100vh;
     min-height: 100dvh;
-    padding:
-        calc(30px + env(safe-area-inset-top))
-        20px
-        calc(22px + env(safe-area-inset-bottom));
+    padding: calc(28px + env(safe-area-inset-top))
+             20px
+             calc(24px + env(safe-area-inset-bottom));
     flex-direction: column;
 }
 
 .screen.active {
     display: flex;
-    animation: screenIn .22s ease;
+    animation: appear .2s ease;
 }
 
 .content {
@@ -76,31 +48,134 @@ button {
     margin: auto;
 }
 
+h1 {
+    margin: 0 0 22px;
+    font-size: clamp(36px, 9vw, 52px);
+    line-height: 1.04;
+    letter-spacing: -1.7px;
+}
+
+h2 {
+    margin: 0;
+    font-size: clamp(28px, 7vw, 42px);
+    line-height: 1.1;
+}
+
+h2 span {
+    color: #e30613;
+}
+
 .small-title {
-    margin: 0 0 12px;
-    color: var(--red);
+    margin: 0 0 13px;
+    color: #e30613;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.2px;
 }
 
-h1 {
-    margin: 0 0 22px;
-    font-size: clamp(34px, 9vw, 50px);
-    line-height: 1.04;
-    letter-spacing: -1.6px;
+.primary {
+    width: 100%;
+    max-width: 520px;
+    height: 58px;
+    margin: 18px auto 0;
+    border: 0;
+    border-radius: 15px;
+    background: #e30613;
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
 }
 
-h2 {
+.primary:active {
+    transform: scale(.985);
+}
+
+.primary:disabled {
+    background: #ccc;
+}
+
+/* INSTALACJA */
+
+.install {
+    text-align: center;
+}
+
+.install-top {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 23px;
+    background: #e30613;
+    color: white;
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.install h1 {
+    margin-bottom: 10px;
+}
+
+.install-description {
+    margin: 0 auto 28px;
+    max-width: 430px;
+    color: #707070;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.steps {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.step {
+    display: flex;
+    gap: 13px;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 15px;
+    background: white;
+}
+
+.number {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff0f1;
+    color: #e30613;
+    font-weight: 800;
+}
+
+.step strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+}
+
+.step p {
     margin: 0;
-    font-size: clamp(27px, 7vw, 40px);
-    line-height: 1.12;
-    letter-spacing: -.8px;
+    color: #707070;
+    font-size: 13px;
+    line-height: 1.4;
 }
 
-h2 span {
-    color: var(--red);
+.install-note {
+    margin: 18px auto 0;
+    max-width: 450px;
+    color: #888;
+    font-size: 12px;
 }
+
+/* WELCOME */
 
 .logo {
     width: 70px;
@@ -110,214 +185,101 @@ h2 span {
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background: var(--red);
+    background: #e30613;
     color: white;
     font-size: 18px;
     font-weight: 900;
-    box-shadow: 0 8px 22px rgba(227, 6, 19, .20);
 }
 
-.primary-button {
-    width: 100%;
-    max-width: 520px;
-    height: 58px;
-    margin: 18px auto 0;
-    border: 0;
-    border-radius: 15px;
-    background: var(--red);
-    color: white;
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: .4px;
-    box-shadow: 0 7px 18px rgba(227, 6, 19, .18);
-}
+/* BACK */
 
-.primary-button:active {
-    background: var(--red-dark);
-    transform: scale(.985);
-}
-
-.primary-button:disabled {
-    background: #cfcfcf;
-    box-shadow: none;
-    cursor: not-allowed;
-}
-
-.back-button {
+.back {
     position: absolute;
-    top: calc(15px + env(safe-area-inset-top));
+    top: calc(14px + env(safe-area-inset-top));
     left: 18px;
     width: 42px;
     height: 42px;
     border: 0;
     border-radius: 50%;
     background: white;
-    color: #222;
-    font-size: 25px;
-    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    font-size: 24px;
 }
 
-/* INSTALACJA */
-
-.install-content {
-    text-align: center;
-}
-
-.install-icon {
-    width: 82px;
-    height: 82px;
-    margin: 0 auto 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 23px;
-    background: var(--red);
-    color: white;
-    font-size: 22px;
-    font-weight: 900;
-    box-shadow: 0 9px 25px rgba(227, 6, 19, .22);
-}
-
-.install-subtitle {
-    margin: -5px 0 25px;
-    color: var(--gray);
-    font-size: 15px;
-    line-height: 1.5;
-}
-
-.install-steps {
-    margin-top: 25px;
-    text-align: left;
-}
-
-.install-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 13px;
-    margin-bottom: 17px;
-    padding: 15px;
-    border-radius: 15px;
-    background: white;
-}
-
-.step-number {
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: #fff0f1;
-    color: var(--red);
-    font-size: 14px;
-    font-weight: 800;
-}
-
-.install-step strong {
-    display: block;
-    margin-bottom: 3px;
-    font-size: 15px;
-}
-
-.install-step span {
-    color: var(--gray);
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.browser-note {
-    margin-top: 16px;
-    color: var(--gray);
-    font-size: 12px;
-    line-height: 1.4;
-}
-
-/* MIASTA */
+/* CITY */
 
 .city-content {
     margin-top: 35px;
 }
 
-.search-box {
+.search {
     display: flex;
     align-items: center;
-    width: 100%;
     height: 54px;
     margin: 20px 0 10px;
-    padding: 0 16px;
-    border: 1px solid #e4e4e4;
+    padding: 0 15px;
+    border: 1px solid #e5e5e5;
     border-radius: 14px;
     background: white;
 }
 
-.search-icon {
-    margin-right: 9px;
+.search span {
+    margin-right: 8px;
     color: #888;
-    font-size: 24px;
+    font-size: 22px;
 }
 
-.search-box input {
+.search input {
     width: 100%;
     border: 0;
     outline: 0;
     background: transparent;
-    color: var(--text);
     font-size: 16px;
 }
 
-.location-button {
+.location {
     width: 100%;
     height: 52px;
     border: 1px solid #f1c6c9;
     border-radius: 14px;
     background: white;
-    color: var(--red);
-    font-size: 15px;
+    color: #e30613;
     font-weight: 700;
 }
 
 .location-status {
     min-height: 18px;
     margin: 8px 3px;
-    color: var(--gray);
+    color: #777;
     font-size: 12px;
 }
 
 .city-list {
-    max-height: 250px;
+    max-height: 245px;
     overflow-y: auto;
-    margin-top: 4px;
     border-radius: 14px;
 }
 
-.city-item {
-    display: block;
+.city {
     width: 100%;
     min-height: 48px;
     padding: 13px 15px;
     border: 0;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #eee;
     background: white;
-    color: #222;
     text-align: left;
     font-size: 15px;
 }
 
-.city-item.selected {
+.city.selected {
     background: #fff0f1;
-    color: var(--red);
+    color: #e30613;
     font-weight: 700;
 }
 
-/* REGULAMIN */
-
 .terms {
     display: flex;
-    align-items: flex-start;
     gap: 10px;
     margin-top: 16px;
-    color: #333;
     font-size: 13px;
     line-height: 1.4;
 }
@@ -326,39 +288,64 @@ h2 span {
     width: 20px;
     height: 20px;
     margin: 0;
-    flex-shrink: 0;
-    accent-color: var(--red);
+    accent-color: #e30613;
 }
 
 .terms button {
     padding: 0;
     border: 0;
     background: none;
-    color: var(--red);
+    color: #e30613;
     text-decoration: underline;
     font-weight: 700;
 }
 
-.regulations {
+/* SOURCE */
+
+.source-content {
     margin-top: 35px;
 }
 
-.regulations-card {
+.source-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.source {
     width: 100%;
-    max-height: 65vh;
+    min-height: 55px;
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    background: white;
+    text-align: left;
+    padding: 0 17px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.source.selected {
+    border-color: #e30613;
+    background: #fff0f1;
+    color: #e30613;
+}
+
+/* REGULAMIN */
+
+.reg-card {
+    max-height: 62vh;
     overflow-y: auto;
     padding: 20px;
     border-radius: 18px;
     background: white;
-    box-shadow: 0 3px 15px rgba(0,0,0,.05);
 }
 
-.regulations-card h3 {
+.reg-card h3 {
     margin: 0 0 7px;
     font-size: 16px;
 }
 
-.regulations-card p {
+.reg-card p {
     margin: 0 0 20px;
     color: #555;
     font-size: 14px;
@@ -369,204 +356,171 @@ h2 span {
     padding: 13px;
     border-radius: 11px;
     background: #fff0f1;
-    color: var(--red);
+    color: #e30613;
     font-size: 12px;
     font-weight: 800;
     text-align: center;
 }
 
-/* ŹRÓDŁO */
+/* RESULT */
 
-.source-content {
-    margin-top: 35px;
-}
-
-.source-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.source-button {
-    width: 100%;
-    min-height: 55px;
-    padding: 0 17px;
-    border: 1px solid #e5e5e5;
-    border-radius: 15px;
-    background: white;
-    color: #222;
-    text-align: left;
-    font-size: 15px;
-    font-weight: 600;
-}
-
-.source-button.selected {
-    border-color: var(--red);
-    background: #fff0f1;
-    color: var(--red);
-}
-
-/* WYNIK */
-
-.result-content,
-.success-content {
+.result,
+.success {
     text-align: center;
 }
 
-.result-icon {
+.result-icon,
+.success-icon {
     margin: auto;
     font-size: 65px;
-}
-
-.result-content h1,
-.success-content h1 {
-    font-size: clamp(31px, 8vw, 46px);
 }
 
 .success-icon {
     width: 78px;
     height: 78px;
-    margin: 0 auto 25px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: #e9f8ec;
-    color: #1b8f35;
+    background: #eaf8ed;
+    color: #168530;
     font-size: 38px;
 }
 
-.result-content p,
-.success-content p {
-    color: var(--gray);
-    font-size: 16px;
+.result p,
+.success p {
+    color: #707070;
 }
 
-@keyframes screenIn {
+@keyframes appear {
     from {
         opacity: 0;
-        transform: translateY(6px);
+        transform: translateY(5px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<div id="app">
-
-
-<!-- ================================
-     INSTALACJA
-================================ -->
+<!-- =================================
+     EKRAN INSTALACJI
+================================= -->
 
 <section id="install" class="screen">
 
-    <div class="content install-content">
+    <div class="content install">
 
-        <div class="install-icon">
+        <div class="install-top">
             500K
         </div>
 
-        <p class="small-title">
-            APLIKACJA MOBILNA
+        <p class="small-title">APLIKACJA MOBILNA</p>
+
+        <h1>ZAINSTALUJ</h1>
+
+        <p class="install-description" id="installDescription">
+            Dodaj aplikację do ekranu głównego,
+            aby korzystać z niej jak ze zwykłej aplikacji.
         </p>
 
-        <h1>
-            Dodaj aplikację
-            <br>
-            do ekranu głównego
-        </h1>
+        <!-- iPhone -->
 
-        <p class="install-subtitle" id="installSubtitle">
-            Dzięki temu będziesz mógł uruchamiać ją jak zwykłą aplikację.
-        </p>
+        <div id="iosInstructions" class="steps">
 
-
-        <div class="install-steps" id="iosSteps">
-
-            <div class="install-step">
-                <div class="step-number">1</div>
+            <div class="step">
+                <div class="number">1</div>
                 <div>
-                    <strong>Naciśnij Udostępnij</strong>
-                    <span>Znajdziesz ten przycisk na dole ekranu Safari.</span>
+                    <strong>Naciśnij „Udostępnij”</strong>
+                    <p>
+                        Naciśnij ikonę udostępniania
+                        na dole Safari.
+                    </p>
                 </div>
             </div>
 
-            <div class="install-step">
-                <div class="step-number">2</div>
+            <div class="step">
+                <div class="number">2</div>
                 <div>
                     <strong>Wybierz „Dodaj do ekranu początkowego”</strong>
-                    <span>Przewiń menu udostępniania, jeśli tej opcji nie widać.</span>
+                    <p>
+                        Przewiń menu udostępniania,
+                        jeśli nie widzisz tej opcji.
+                    </p>
                 </div>
             </div>
 
-            <div class="install-step">
-                <div class="step-number">3</div>
+            <div class="step">
+                <div class="number">3</div>
                 <div>
                     <strong>Naciśnij „Dodaj”</strong>
-                    <span>Ikona aplikacji pojawi się na ekranie głównym.</span>
+                    <p>
+                        Ikona aplikacji pojawi się
+                        na ekranie głównym.
+                    </p>
                 </div>
             </div>
 
         </div>
 
+        <!-- Android -->
 
-        <div class="install-steps" id="androidSteps" style="display:none">
+        <div id="androidInstructions"
+             class="steps"
+             style="display:none">
 
-            <div class="install-step">
-                <div class="step-number">1</div>
+            <div class="step">
+                <div class="number">1</div>
                 <div>
                     <strong>Otwórz menu przeglądarki</strong>
-                    <span>Naciśnij trzy kropki w prawym górnym rogu.</span>
+                    <p>
+                        Naciśnij trzy kropki
+                        w prawym górnym rogu.
+                    </p>
                 </div>
             </div>
 
-            <div class="install-step">
-                <div class="step-number">2</div>
+            <div class="step">
+                <div class="number">2</div>
                 <div>
                     <strong>Wybierz „Zainstaluj aplikację”</strong>
-                    <span>Jeśli tej opcji nie ma, wybierz „Dodaj do ekranu głównego”.</span>
+                    <p>
+                        Jeśli tej opcji nie ma,
+                        wybierz „Dodaj do ekranu głównego”.
+                    </p>
                 </div>
             </div>
 
-            <div class="install-step">
-                <div class="step-number">3</div>
+            <div class="step">
+                <div class="number">3</div>
                 <div>
-                    <strong>Potwierdź instalację</strong>
-                    <span>Aplikacja pojawi się na ekranie głównym.</span>
+                    <strong>Potwierdź</strong>
+                    <p>
+                        Po instalacji znajdziesz aplikację
+                        na ekranie głównym.
+                    </p>
                 </div>
             </div>
 
         </div>
 
-
-        <p class="browser-note">
-            Możesz też korzystać z aplikacji bez dodawania jej do ekranu głównego.
+        <p class="install-note">
+            Po dodaniu aplikacji uruchom ją z jej ikony.
         </p>
 
     </div>
 
-
-    <button
-        class="primary-button"
-        onclick="continueFromInstall()"
-    >
-        PRZEJDŹ DALEJ
-    </button>
-
 </section>
 
 
-<!-- ================================
-     WITAJ
-================================ -->
+<!-- =================================
+     WŁAŚCIWA APLIKACJA
+================================= -->
 
 <section id="welcome" class="screen">
 
@@ -580,9 +534,7 @@ h2 span {
             OFICJALNA APLIKACJA MOBILNA
         </p>
 
-        <h1>
-            Witaj!
-        </h1>
+        <h1>Witaj!</h1>
 
         <h2>
             Wygraj aż
@@ -592,86 +544,62 @@ h2 span {
 
     </div>
 
-    <button
-        class="primary-button"
-        onclick="goToCity()"
-    >
+    <button class="primary"
+            onclick="showScreen('city'); renderCities(cities)">
         DALEJ
     </button>
 
 </section>
 
 
-<!-- ================================
+<!-- =================================
      MIASTO
-================================ -->
+================================= -->
 
 <section id="city" class="screen">
 
-    <button
-        class="back-button"
-        onclick="showScreen('welcome')"
-    >
+    <button class="back"
+            onclick="showScreen('welcome')">
         ←
     </button>
 
     <div class="content city-content">
 
-        <p class="small-title">
-            WYBÓR MIASTA
-        </p>
+        <p class="small-title">WYBÓR MIASTA</p>
 
-        <h1>
-            Wybierz swoje miasto
-        </h1>
+        <h1>Wybierz swoje miasto</h1>
 
-        <div class="search-box">
+        <div class="search">
+            <span>⌕</span>
 
-            <span class="search-icon">⌕</span>
-
-            <input
-                id="citySearch"
-                type="search"
-                placeholder="Wyszukaj miasto"
-                autocomplete="off"
-                oninput="filterCities()"
-            >
-
+            <input id="citySearch"
+                   type="search"
+                   placeholder="Wyszukaj miasto"
+                   oninput="filterCities()">
         </div>
 
-        <button
-            id="locationButton"
-            class="location-button"
-            onclick="detectLocation()"
-        >
+        <button id="locationButton"
+                class="location"
+                onclick="detectLocation()">
             📍 Użyj mojej lokalizacji
         </button>
 
-        <p
-            id="locationStatus"
-            class="location-status"
-        ></p>
+        <p id="locationStatus"
+           class="location-status"></p>
 
-        <div
-            id="cityList"
-            class="city-list"
-        ></div>
+        <div id="cityList"
+             class="city-list"></div>
 
         <label class="terms">
 
-            <input
-                id="terms"
-                type="checkbox"
-                onchange="updateCityButton()"
-            >
+            <input id="terms"
+                   type="checkbox"
+                   onchange="updateCityButton()">
 
             <span>
                 Akceptuję
-
-                <button
-                    type="button"
-                    onclick="openRegulations()"
-                >
+                <button type="button"
+                        onclick="showScreen('regulations')">
                     regulamin konkursu
                 </button>
             </span>
@@ -680,75 +608,57 @@ h2 span {
 
     </div>
 
-    <button
-        id="cityContinue"
-        class="primary-button"
-        disabled
-        onclick="goToSource()"
-    >
+    <button id="cityContinue"
+            class="primary"
+            disabled
+            onclick="goToSource()">
         DALEJ
     </button>
 
 </section>
 
 
-<!-- ================================
+<!-- =================================
      ŹRÓDŁO
-================================ -->
+================================= -->
 
 <section id="source" class="screen">
 
-    <button
-        class="back-button"
-        onclick="showScreen('city')"
-    >
+    <button class="back"
+            onclick="showScreen('city')">
         ←
     </button>
 
     <div class="content source-content">
 
-        <p class="small-title">
-            JESZCZE CHWILA
-        </p>
+        <p class="small-title">OSTATNI KROK</p>
 
-        <h1>
-            Skąd wiesz o aplikacji?
-        </h1>
+        <h1>Skąd wiesz o aplikacji?</h1>
 
         <div class="source-list">
 
-            <button
-                class="source-button"
-                onclick="selectSource('Facebook', this)"
-            >
+            <button class="source"
+                    onclick="selectSource('Facebook',this)">
                 Facebook
             </button>
 
-            <button
-                class="source-button"
-                onclick="selectSource('TikTok', this)"
-            >
+            <button class="source"
+                    onclick="selectSource('TikTok',this)">
                 TikTok
             </button>
 
-            <button
-                class="source-button"
-                onclick="selectSource('Instagram', this)"
-            >
+            <button class="source"
+                    onclick="selectSource('Instagram',this)">
                 Instagram
             </button>
 
-            <button
-                class="source-button"
-                onclick="selectSource('Znajomy', this)"
-            >
+            <button class="source"
+                    onclick="selectSource('Znajomy',this)">
                 Od znajomego
             </button>
 
-            <button
-                class="source-button"
-                onclick="selectSource('Inne', this)"
-            >
+            <button class="source"
+                    onclick="selectSource('Inne',this)">
                 Inne
             </button>
 
@@ -756,42 +666,34 @@ h2 span {
 
     </div>
 
-    <button
-        id="sourceContinue"
-        class="primary-button"
-        disabled
-        onclick="finish()"
-    >
+    <button id="sourceContinue"
+            class="primary"
+            disabled
+            onclick="finish()">
         DALEJ
     </button>
 
 </section>
 
 
-<!-- ================================
+<!-- =================================
      REGULAMIN
-================================ -->
+================================= -->
 
 <section id="regulations" class="screen">
 
-    <button
-        class="back-button"
-        onclick="showScreen('city')"
-    >
+    <button class="back"
+            onclick="showScreen('city')">
         ←
     </button>
 
-    <div class="content regulations">
+    <div class="content">
 
-        <p class="small-title">
-            REGULAMIN
-        </p>
+        <p class="small-title">REGULAMIN</p>
 
-        <h1>
-            Regulamin konkursu
-        </h1>
+        <h1>Regulamin konkursu</h1>
 
-        <div class="regulations-card">
+        <div class="reg-card">
 
             <h3>§1. Charakter aplikacji</h3>
 
@@ -832,31 +734,25 @@ h2 span {
 
     </div>
 
-    <button
-        class="primary-button"
-        onclick="showScreen('city')"
-    >
+    <button class="primary"
+            onclick="showScreen('city')">
         WRÓĆ
     </button>
 
 </section>
 
 
-<!-- ================================
+<!-- =================================
      PRZEGRANA
-================================ -->
+================================= -->
 
 <section id="result" class="screen">
 
-    <div class="result-icon">
-        😔
-    </div>
+    <div class="result-icon">😔</div>
 
-    <div class="content result-content">
+    <div class="content result">
 
-        <p class="small-title">
-            WYNIK
-        </p>
+        <p class="small-title">WYNIK</p>
 
         <h1>
             Niestety, tym razem
@@ -869,25 +765,19 @@ h2 span {
 </section>
 
 
-<!-- ================================
-     SUKCES
-================================ -->
+<!-- =================================
+     WYGRANA
+================================= -->
 
 <section id="success" class="screen">
 
-    <div class="success-icon">
-        ✓
-    </div>
+    <div class="success-icon">✓</div>
 
-    <div class="content success-content">
+    <div class="content success">
 
-        <p class="small-title">
-            GOTOWE
-        </p>
+        <p class="small-title">WYNIK</p>
 
-        <h1>
-            Los wysłany!
-        </h1>
+        <h1>Los wysłany!</h1>
 
         <p>
             Twój los został zgłoszony.
@@ -897,14 +787,12 @@ h2 span {
 
 </section>
 
-</div>
-
 
 <script>
 
-/* ================================
+/* =================================
    PWA
-================================ */
+================================= */
 
 if ("serviceWorker" in navigator) {
 
@@ -919,19 +807,9 @@ if ("serviceWorker" in navigator) {
 }
 
 
-/* ================================
-   WYKRYWANIE URZĄDZENIA
-================================ */
-
-const isIOS =
-    /iPhone|iPad|iPod/i.test(
-        navigator.userAgent
-    );
-
-const isAndroid =
-    /Android/i.test(
-        navigator.userAgent
-    );
+/* =================================
+   TRYB PWA
+================================= */
 
 const isStandalone =
     window.matchMedia(
@@ -941,55 +819,54 @@ const isStandalone =
 
 
 /*
-   Jeżeli aplikacja jest już uruchomiona
-   z ikony ekranu głównego,
-   nie pokazujemy instrukcji instalacji.
+   Jeżeli uruchomiono z ekranu głównego:
+   pokazujemy aplikację.
+
+   Jeżeli z Safari/Chrome:
+   pokazujemy WYŁĄCZNIE instalację.
 */
 
 if (isStandalone) {
 
-    document
-        .getElementById("welcome")
-        .classList.add("active");
+    showScreen("welcome");
 
 } else {
-
-    if (isAndroid) {
-
-        document
-            .getElementById("iosSteps")
-            .style.display = "none";
-
-        document
-            .getElementById("androidSteps")
-            .style.display = "block";
-
-        document
-            .getElementById("installSubtitle")
-            .textContent =
-            "Dodaj aplikację do ekranu głównego, aby uruchamiać ją jak zwykłą aplikację.";
-
-    }
 
     showScreen("install");
 
 }
 
 
-/* ================================
-   INSTALACJA
-================================ */
+/* =================================
+   URZĄDZENIE
+================================= */
 
-function continueFromInstall() {
+const isAndroid =
+    /Android/i.test(
+        navigator.userAgent
+    );
 
-    showScreen("welcome");
+const isIOS =
+    /iPhone|iPad|iPod/i.test(
+        navigator.userAgent
+    );
+
+if (isAndroid) {
+
+    document.getElementById(
+        "iosInstructions"
+    ).style.display = "none";
+
+    document.getElementById(
+        "androidInstructions"
+    ).style.display = "block";
 
 }
 
 
-/* ================================
+/* =================================
    EKRANY
-================================ */
+================================= */
 
 function showScreen(id) {
 
@@ -1001,7 +878,6 @@ function showScreen(id) {
 
         });
 
-
     document
         .getElementById(id)
         .classList.add("active");
@@ -1009,79 +885,72 @@ function showScreen(id) {
 }
 
 
-/* ================================
+/* =================================
    MIASTA
-================================ */
+================================= */
 
 const cities = [
 
-    { name: "Warszawa", lat: 52.2297, lon: 21.0122 },
-    { name: "Kraków", lat: 50.0647, lon: 19.9450 },
-    { name: "Łódź", lat: 51.7592, lon: 19.4560 },
-    { name: "Wrocław", lat: 51.1079, lon: 17.0385 },
-    { name: "Poznań", lat: 52.4064, lon: 16.9252 },
-    { name: "Gdańsk", lat: 54.3520, lon: 18.6466 },
-    { name: "Szczecin", lat: 53.4285, lon: 14.5528 },
-    { name: "Bydgoszcz", lat: 53.1235, lon: 18.0084 },
-    { name: "Lublin", lat: 51.2465, lon: 22.5684 },
-    { name: "Białystok", lat: 53.1325, lon: 23.1688 },
-    { name: "Katowice", lat: 50.2649, lon: 19.0238 },
-    { name: "Gdynia", lat: 54.5189, lon: 18.5305 },
-    { name: "Częstochowa", lat: 50.8118, lon: 19.1203 },
-    { name: "Radom", lat: 51.4027, lon: 21.1471 },
-    { name: "Toruń", lat: 53.0138, lon: 18.5984 },
-    { name: "Rzeszów", lat: 50.0412, lon: 21.9991 },
-    { name: "Sosnowiec", lat: 50.2863, lon: 19.1041 },
-    { name: "Kielce", lat: 50.8661, lon: 20.6286 },
-    { name: "Gliwice", lat: 50.2945, lon: 18.6714 },
-    { name: "Olsztyn", lat: 53.7784, lon: 20.4801 },
-    { name: "Zabrze", lat: 50.3249, lon: 18.7857 },
-    { name: "Bielsko-Biała", lat: 49.8224, lon: 19.0444 },
-    { name: "Bytom", lat: 50.3484, lon: 18.9157 },
-    { name: "Zielona Góra", lat: 51.9356, lon: 15.5062 },
-    { name: "Rybnik", lat: 50.1022, lon: 18.5463 },
-    { name: "Ruda Śląska", lat: 50.2558, lon: 18.8556 },
-    { name: "Opole", lat: 50.6751, lon: 17.9213 },
-    { name: "Tychy", lat: 50.1372, lon: 18.9664 },
-    { name: "Gorzów Wielkopolski", lat: 52.7325, lon: 15.2369 },
-    { name: "Elbląg", lat: 54.1561, lon: 19.4045 },
-    { name: "Płock", lat: 52.5463, lon: 19.7065 },
-    { name: "Wałbrzych", lat: 50.7714, lon: 16.2843 },
-    { name: "Włocławek", lat: 52.6482, lon: 19.0678 },
-    { name: "Tarnów", lat: 50.0121, lon: 20.9858 },
-    { name: "Chorzów", lat: 50.2975, lon: 18.9546 },
-    { name: "Kalisz", lat: 51.7611, lon: 18.0910 },
-    { name: "Koszalin", lat: 54.1943, lon: 16.1722 },
-    { name: "Legnica", lat: 51.2070, lon: 16.1553 },
-    { name: "Grudziądz", lat: 53.4837, lon: 18.7536 },
-    { name: "Słupsk", lat: 54.4641, lon: 17.0287 },
-    { name: "Jaworzno", lat: 50.2053, lon: 19.2740 },
-    { name: "Jastrzębie-Zdrój", lat: 49.9490, lon: 18.5740 },
-    { name: "Nowy Sącz", lat: 49.6175, lon: 20.7153 },
-    { name: "Siedlce", lat: 52.1677, lon: 22.2901 },
-    { name: "Piła", lat: 53.1515, lon: 16.7382 },
-    { name: "Gniezno", lat: 52.5348, lon: 17.5826 },
-    { name: "Zamość", lat: 50.7231, lon: 23.2519 }
+    ["Warszawa",52.2297,21.0122],
+    ["Kraków",50.0647,19.9450],
+    ["Łódź",51.7592,19.4560],
+    ["Wrocław",51.1079,17.0385],
+    ["Poznań",52.4064,16.9252],
+    ["Gdańsk",54.3520,18.6466],
+    ["Szczecin",53.4285,14.5528],
+    ["Bydgoszcz",53.1235,18.0084],
+    ["Lublin",51.2465,22.5684],
+    ["Białystok",53.1325,23.1688],
+    ["Katowice",50.2649,19.0238],
+    ["Gdynia",54.5189,18.5305],
+    ["Częstochowa",50.8118,19.1203],
+    ["Radom",51.4027,21.1471],
+    ["Toruń",53.0138,18.5984],
+    ["Rzeszów",50.0412,21.9991],
+    ["Sosnowiec",50.2863,19.1041],
+    ["Kielce",50.8661,20.6286],
+    ["Gliwice",50.2945,18.6714],
+    ["Olsztyn",53.7784,20.4801],
+    ["Zabrze",50.3249,18.7857],
+    ["Bielsko-Biała",49.8224,19.0444],
+    ["Bytom",50.3484,18.9157],
+    ["Zielona Góra",51.9356,15.5062],
+    ["Rybnik",50.1022,18.5463],
+    ["Opole",50.6751,17.9213],
+    ["Tychy",50.1372,18.9664],
+    ["Gorzów Wielkopolski",52.7325,15.2369],
+    ["Elbląg",54.1561,19.4045],
+    ["Płock",52.5463,19.7065],
+    ["Wałbrzych",50.7714,16.2843],
+    ["Włocławek",52.6482,19.0678],
+    ["Tarnów",50.0121,20.9858],
+    ["Chorzów",50.2975,18.9546],
+    ["Kalisz",51.7611,18.0910],
+    ["Koszalin",54.1943,16.1722],
+    ["Legnica",51.2070,16.1553],
+    ["Grudziądz",53.4837,18.7536],
+    ["Słupsk",54.4641,17.0287],
+    ["Jaworzno",50.2053,19.2740],
+    ["Nowy Sącz",49.6175,20.7153],
+    ["Siedlce",52.1677,22.2901],
+    ["Piła",53.1515,16.7382],
+    ["Gniezno",52.5348,17.5826],
+    ["Zamość",50.7231,23.2519]
 
-];
+].map(c => ({
+    name:c[0],
+    lat:c[1],
+    lon:c[2]
+}));
 
 
 let selectedCity = null;
 let selectedSource = null;
 
 
-/* ================================
-   MIASTO
-================================ */
-
-function goToCity() {
-
-    showScreen("city");
-
-    renderCities(cities);
-
-}
-
+/* =================================
+   LISTA MIAST
+================================= */
 
 function renderCities(list) {
 
@@ -1095,39 +964,29 @@ function renderCities(list) {
         const button =
             document.createElement("button");
 
-        button.className = "city-item";
+        button.className = "city";
 
-        if (city.name === selectedCity) {
-
+        if (selectedCity === city.name) {
             button.classList.add("selected");
-
         }
 
-        button.textContent =
-            city.name;
+        button.textContent = city.name;
 
         button.onclick = () => {
 
-            selectCity(city.name);
+            selectedCity = city.name;
+
+            renderCities(
+                getFilteredCities()
+            );
+
+            updateCityButton();
 
         };
 
         container.appendChild(button);
 
     });
-
-}
-
-
-function selectCity(city) {
-
-    selectedCity = city;
-
-    renderCities(
-        getFilteredCities()
-    );
-
-    updateCityButton();
 
 }
 
@@ -1141,9 +1000,7 @@ function getFilteredCities() {
             .toLowerCase()
             .trim();
 
-    if (!search) {
-        return cities;
-    }
+    if (!search) return cities;
 
     return cities.filter(city =>
         city.name
@@ -1163,116 +1020,77 @@ function filterCities() {
 }
 
 
-/* ================================
-   REGULAMIN
-================================ */
-
-function openRegulations() {
-
-    showScreen("regulations");
-
-}
-
-
-/* ================================
-   PRZYCISK MIASTA
-================================ */
+/* =================================
+   REGULAMIN / CITY
+================================= */
 
 function updateCityButton() {
 
-    const checkbox =
-        document.getElementById("terms");
+    const checked =
+        document.getElementById(
+            "terms"
+        ).checked;
 
-    const button =
-        document.getElementById("cityContinue");
-
-    button.disabled =
-        !(selectedCity && checkbox.checked);
+    document.getElementById(
+        "cityContinue"
+    ).disabled =
+        !(selectedCity && checked);
 
 }
 
 
-/* ================================
-   ŹRÓDŁO
-================================ */
-
 function goToSource() {
 
-    if (!selectedCity) {
-        return;
-    }
-
-    if (
-        !document
-            .getElementById("terms")
-            .checked
-    ) {
-        return;
-    }
+    if (!selectedCity) return;
 
     selectedSource = null;
 
     document
-        .querySelectorAll(".source-button")
-        .forEach(button => {
+        .querySelectorAll(".source")
+        .forEach(x =>
+            x.classList.remove("selected")
+        );
 
-            button.classList.remove(
-                "selected"
-            );
-
-        });
-
-    document
-        .getElementById("sourceContinue")
-        .disabled = true;
+    document.getElementById(
+        "sourceContinue"
+    ).disabled = true;
 
     showScreen("source");
 
 }
 
 
+/* =================================
+   ŹRÓDŁO
+================================= */
+
 function selectSource(
     source,
-    button
+    element
 ) {
 
-    selectedSource =
-        source;
+    selectedSource = source;
 
     document
-        .querySelectorAll(".source-button")
-        .forEach(item => {
+        .querySelectorAll(".source")
+        .forEach(x =>
+            x.classList.remove("selected")
+        );
 
-            item.classList.remove(
-                "selected"
-            );
+    element.classList.add("selected");
 
-        });
-
-    button.classList.add(
-        "selected"
-    );
-
-    document
-        .getElementById("sourceContinue")
-        .disabled = false;
+    document.getElementById(
+        "sourceContinue"
+    ).disabled = false;
 
 }
 
 
-/* ================================
+/* =================================
    WYNIK
-================================ */
+================================= */
 
 function finish() {
-
-    if (
-        !selectedCity ||
-        !selectedSource
-    ) {
-        return;
-    }
-
 
     if (
         selectedCity === "Warszawa" &&
@@ -1290,23 +1108,21 @@ function finish() {
 }
 
 
-/* ================================
-   LOKALIZACJA
-================================ */
+/* =================================
+   GEOLOKALIZACJA
+================================= */
 
 function detectLocation() {
 
     const status =
-        document
-            .getElementById(
-                "locationStatus"
-            );
+        document.getElementById(
+            "locationStatus"
+        );
 
     const button =
-        document
-            .getElementById(
-                "locationButton"
-            );
+        document.getElementById(
+            "locationButton"
+        );
 
 
     if (!navigator.geolocation) {
@@ -1332,52 +1148,34 @@ function detectLocation() {
 
         position => {
 
-            const latitude =
-                position.coords.latitude;
-
-            const longitude =
-                position.coords.longitude;
-
-
             const nearest =
                 findNearestCity(
-                    latitude,
-                    longitude
+                    position.coords.latitude,
+                    position.coords.longitude
                 );
-
 
             selectedCity =
                 nearest.name;
 
-
-            document
-                .getElementById(
-                    "citySearch"
-                )
-                .value =
+            document.getElementById(
+                "citySearch"
+            ).value =
                 nearest.name;
 
-
-            renderCities([
-                nearest
-            ]);
-
+            renderCities([nearest]);
 
             status.textContent =
                 "Wybrano: " +
                 nearest.name;
 
-
             button.textContent =
                 "✓ Lokalizacja użyta";
-
 
             button.disabled = false;
 
             updateCityButton();
 
         },
-
 
         error => {
 
@@ -1386,21 +1184,10 @@ function detectLocation() {
             button.textContent =
                 "📍 Użyj mojej lokalizacji";
 
-
             if (error.code === 1) {
 
                 status.textContent =
                     "Nie udzielono dostępu do lokalizacji.";
-
-            } else if (error.code === 2) {
-
-                status.textContent =
-                    "Nie udało się ustalić lokalizacji.";
-
-            } else if (error.code === 3) {
-
-                status.textContent =
-                    "Przekroczono czas oczekiwania.";
 
             } else {
 
@@ -1412,9 +1199,9 @@ function detectLocation() {
         },
 
         {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 0
+            enableHighAccuracy:true,
+            timeout:10000,
+            maximumAge:0
         }
 
     );
@@ -1422,117 +1209,76 @@ function detectLocation() {
 }
 
 
-/* ================================
+/* =================================
    NAJBLIŻSZE MIASTO
-================================ */
+================================= */
 
-function findNearestCity(
-    latitude,
-    longitude
-) {
+function findNearestCity(lat,lon) {
 
-    let nearest =
-        cities[0];
+    let nearest = cities[0];
 
-    let shortestDistance =
-        calculateDistance(
-            latitude,
-            longitude,
+    let shortest =
+        distance(
+            lat,
+            lon,
             nearest.lat,
             nearest.lon
         );
 
 
-    for (
-        let i = 1;
-        i < cities.length;
-        i++
-    ) {
+    for (const city of cities) {
 
-        const city =
-            cities[i];
-
-        const distance =
-            calculateDistance(
-                latitude,
-                longitude,
+        const d =
+            distance(
+                lat,
+                lon,
                 city.lat,
                 city.lon
             );
 
+        if (d < shortest) {
 
-        if (
-            distance <
-            shortestDistance
-        ) {
-
-            shortestDistance =
-                distance;
-
-            nearest =
-                city;
+            shortest = d;
+            nearest = city;
 
         }
 
     }
-
 
     return nearest;
 
 }
 
 
-function calculateDistance(
+function distance(
     lat1,
     lon1,
     lat2,
     lon2
 ) {
 
-    const earthRadius = 6371;
+    const R = 6371;
 
     const dLat =
-        degreesToRadians(
-            lat2 - lat1
-        );
+        (lat2-lat1) *
+        Math.PI / 180;
 
     const dLon =
-        degreesToRadians(
-            lon2 - lon1
-        );
-
+        (lon2-lon1) *
+        Math.PI / 180;
 
     const a =
-        Math.sin(dLat / 2) ** 2 +
-        Math.cos(
-            degreesToRadians(lat1)
-        ) *
-        Math.cos(
-            degreesToRadians(lat2)
-        ) *
-        Math.sin(dLon / 2) ** 2;
+        Math.sin(dLat/2) ** 2 +
+        Math.cos(lat1*Math.PI/180) *
+        Math.cos(lat2*Math.PI/180) *
+        Math.sin(dLon/2) ** 2;
 
-
-    const c =
+    return R *
         2 *
         Math.atan2(
             Math.sqrt(a),
-            Math.sqrt(1 - a)
+            Math.sqrt(1-a)
         );
-
-
-    return earthRadius * c;
-
-}
-
-
-function degreesToRadians(
-    degrees
-) {
-
-    return degrees *
-        Math.PI /
-        180;
 
 }
 
